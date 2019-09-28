@@ -187,6 +187,7 @@ public class CharactersActivity extends AppCompatActivity {
 
 
 
+
                         Log.e(TAG, "Respone   id---: " + object.getString("id"));
                         String id = object.getString("id");
                         String name = object.getString("name");
