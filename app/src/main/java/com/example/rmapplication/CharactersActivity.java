@@ -60,8 +60,18 @@ public class CharactersActivity extends AppCompatActivity {
         cha = loginToken.substring(1, loginToken.length() - 1);
         final String[] elements = cha.split(",");
 
+     final   String[] elementsRefined=new String[elements.length];
+        for (int i = 0; i < elements.length; i++) {
+            String temp     = elements[i];
+            temp = temp.substring(1, temp.length() - 1);
+            temp = temp.replace("\\/", "/");
+            elementsRefined[i]=temp;
+
+        }
+
+
         items = Arrays.asList(cha.split("\\s*,\\s*"));
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, elements);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, elementsRefined);
         c_listView.setAdapter(arrayAdapter);
         c_listView.setOnItemClickListener(new AdapterView
 
@@ -70,9 +80,9 @@ public class CharactersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                URL = elements[position];
-                URL = URL.substring(1, URL.length() - 1);
-                URL = URL.replace("\\/", "/");
+                URL = elementsRefined[position];
+              /*  URL = URL.substring(1, URL.length() - 1);
+                URL = URL.replace("\\/", "/");*/
 
 
                 new getCharacters().execute();
